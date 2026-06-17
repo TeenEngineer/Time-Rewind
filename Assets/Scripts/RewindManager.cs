@@ -48,8 +48,8 @@ public class RewindManager : MonoBehaviour
         string currentSceneName = SceneManager.GetActiveScene().name;
         if (currentSceneName == "Main")
         {
-            if (Input.GetKeyDown(KeyCode.R)) StartRewindAll();
-            if (Input.GetKeyUp(KeyCode.R)) StopRewindAll();
+            /*if (Input.GetKeyDown(KeyCode.R)) StartRewindAll();
+            if (Input.GetKeyUp(KeyCode.R)) StopRewindAll();*/
         }
     }
 }
