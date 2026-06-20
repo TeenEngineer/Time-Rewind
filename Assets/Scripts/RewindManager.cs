@@ -53,13 +53,13 @@ public class RewindManager : MonoBehaviour
 
     void Update()
     {
-        string currentSceneName = SceneManager.GetActiveScene().name;
+        /*string currentSceneName = SceneManager.GetActiveScene().name;
         if (currentSceneName == "Main")
         {
-            /*if (Input.GetKeyDown(KeyCode.R)) StartRewindAll();
-            if (Input.GetKeyUp(KeyCode.R)) StopRewindAll();*/
+            if (Input.GetKeyDown(KeyCode.R)) StartRewindAll();
+            if (Input.GetKeyUp(KeyCode.R)) StopRewindAll();
             if (Input.GetKeyDown(KeyCode.R)) Appear();
-        }
+        }*/
     }
 
     public void Appear()

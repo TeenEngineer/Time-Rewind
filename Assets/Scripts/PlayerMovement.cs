@@ -28,12 +28,11 @@ public class PlayerMovement : MonoBehaviour
         {
             body.linearVelocity = new Vector2(horizontalInput * currentSpeed, body.linearVelocity.y);
         }
-        else if (grounded)
+        else
         {
-            // Stop on the ground when no input
             body.linearVelocity = new Vector2(0f, body.linearVelocity.y);
         }
-        
+
 
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
@@ -68,7 +67,6 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("Walk", false);
             anim.SetBool("Run", false);
         }
-
     }
 
     private void Flip(float direction)
@@ -87,10 +85,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground")) {
+        grounded = true;
+        anim.SetBool("Jump", false);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+            grounded = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Decoy"))
         {
-            grounded = true;
-            anim.SetBool("Jump", false);
+            Destroy(collision.gameObject);
         }
     }
 }

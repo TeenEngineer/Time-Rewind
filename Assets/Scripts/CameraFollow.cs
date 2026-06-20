@@ -2,21 +2,25 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public Transform player;
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private float smoothTime = 0.3f;
+
+    private Vector3 velocity = Vector3.zero;
 
     private void LateUpdate()
     {
-        transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
+        Vector3 targetPosition = new Vector3(
+            player.position.x,
+            player.position.y,
+            transform.position.z
+        );
+
+        transform.position = Vector3.SmoothDamp(
+            transform.position,
+            targetPosition,
+            ref velocity,
+            smoothTime
+        );
     }
 }
