@@ -31,5 +31,9 @@ public class ShowKey : MonoBehaviour
             playerInRange = inRange;
             if (promptUI != null) promptUI.SetActive(playerInRange);
         }
+        if(disabled)
+        {
+            promptUI.SetActive(false);
+        }
     }
 }

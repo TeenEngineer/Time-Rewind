@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using static Unity.VisualScripting.Member;
 
@@ -8,6 +9,8 @@ public class NPC : MonoBehaviour
     [SerializeField] private KeyCode interactionKey = KeyCode.F;
     [SerializeField] private DialogueTrigger dialogueTrigger;
     [SerializeField] private DialogueManager dialogueManager;
+    [SerializeField] private bool playedOnce = false;
+    private bool isOnce = false;
 
     private Transform player;
     private bool playerInRange = false;
@@ -31,17 +34,18 @@ public class NPC : MonoBehaviour
         bool inRange = distance <= interactionRange;
 
         // Show/hide prompt only when state changes (avoids setting active every frame)
-        if (inRange != playerInRange)
+        if (inRange != playerInRange && !isOnce)
         {
             playerInRange = inRange;
             if (promptUI != null) promptUI.SetActive(playerInRange);
         }
 
         // Trigger interaction when player presses key while in range
-        if (playerInRange && Input.GetKeyDown(interactionKey) && !dialogueManager.dialogueActive)
+        if (playerInRange && Input.GetKeyDown(interactionKey) && !dialogueManager.dialogueActive && !isOnce)
         {
             if (dialogueTrigger != null) dialogueTrigger.TriggerDialogue();
             if (promptUI != null) promptUI.SetActive(false); // hide prompt during dialogue
+            if(playedOnce) isOnce = true;
         }
         else if(playerInRange && dialogueManager.dialogueActive)
         {

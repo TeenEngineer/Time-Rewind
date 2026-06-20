@@ -5,6 +5,7 @@ public class GrabObjects : MonoBehaviour
     [SerializeField] private Transform grabPoint;
     [SerializeField] private Transform rayPoint;
     [SerializeField] private float rayDistance = 1.5f;
+    [SerializeField] private ShowKey showkey;
 
     private GameObject grabbedObject;
     private int layerIndex;
@@ -54,7 +55,7 @@ public class GrabObjects : MonoBehaviour
         grabbedObject.transform.position = grabPoint.position;
         grabbedObject.transform.SetParent(grabPoint);
 
-        ShowKey.Instance.disabled = true;
+        showkey.disabled = true;
     }
 
     void DropObject()
@@ -69,6 +70,6 @@ public class GrabObjects : MonoBehaviour
 
         grabbedObject = null;
 
-        ShowKey.Instance.disabled = false;
+        showkey.disabled = false;
     }
 }
