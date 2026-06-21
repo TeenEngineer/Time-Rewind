@@ -9,6 +9,7 @@ TagManager:
   - Item
   - AllowRewind
   - Decoy
+  - Cube
   layers:
   - Default
   - TransparentFX
