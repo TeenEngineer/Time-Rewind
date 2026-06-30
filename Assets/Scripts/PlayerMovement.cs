@@ -6,10 +6,12 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D body;
     [SerializeField] public int speed;
     [SerializeField] public float jumpforce;
-    private Animator anim;
+    public Animator anim;
     public bool grounded;
 
     private float lastDirection = 1;
+
+    public bool canMove = true;
 
     void Start()
     {
@@ -19,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (!canMove) return;
+
         float horizontalInput = Input.GetAxis("Horizontal");
         bool isSprinting = Input.GetKey(KeyCode.LeftShift);
         float currentSpeed = isSprinting ? speed*(float)1.5 : speed;
